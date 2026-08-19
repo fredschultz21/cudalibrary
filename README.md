@@ -112,9 +112,9 @@ derivative of weight x previous activation -> this equation will always just be 
 
 Here is an even more simplified version of the equation:
 
-The derivative of sigmoid is always equal to a x (1 - a)
+	The derivative of sigmoid is always equal to a x (1 - a)
 
-(2 x (actual value - desired value)) x (actual value x (1 - actual value) x (previous activation)
+	(2 x (actual value - desired value)) x (actual value x (1 - actual value) x (previous activation)
 
 To calculate in terms of bias instead of weight just do:
 
