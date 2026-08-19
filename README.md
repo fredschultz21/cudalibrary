@@ -82,7 +82,7 @@ Using basic calculus, lets calculate the derivative of our MSE cost function:
 	Same math as:
 	Derivative of x² = 2x
 
-Easy! Now for the hard part. We can’t just back propagate layer by layer, with each layer in its own vacuum. The point of backpropagation is to correct the model
+Easy! Now for the hard part. We can’t just back propagate layer by layer, with each layer in its own vacuum. The point of backpropagation is to correct the model in terms of the inputs, so we can't just only look at each layer by itself. We need some way to calculate cost in terms of the earlier layers.
 
 The sigmoid function is nice since it keeps our activations between 0 and 1, but it has slightly “corrupted” our values at this point. In order to adjust stuff while backpropagating to translate back to what it was before sigmoid affected it, 
 
