@@ -47,7 +47,7 @@ Once we propagate on this layer, we get .51, which is then passed through the si
 
 Sigmoid function σ (so activations don’t move toward infinity):
 
-![description](images/sigmoid.jpg)
+![description](images/sigmoid.png)
 
 Here is the matrix representation of this calculation. We add the bias after multiplying the weight and activation matrices.
 
@@ -72,7 +72,7 @@ Squaring here is convenient because if there’s a big difference between the ac
 
 The goal of backpropagation is to find the minimum of the cost function. This is equivalent to saying we want to find the point where the graph dips lowest, and equivalent to saying that we want to find the point where the slope of the graph is flat, meaning we are either at a local or global minima. Training is similar to a ball rolling down a hill, trying to get the lowest it possibly can to minimize cost (minimize how bad the model is). If the cost function looks like this (although it will be at a much higher dimension than just 2 dimensions) and we are at x = 2, we want to step left and get to x = 0.5. We can simply take the slope where we are, at x = 2, see how steep it is, and the steeper the slope, the further we are from the deepest point, and the further we step down. Once we get down to x = 1, we will take tinier and tinier steps, until we find the local minima (or global minima in the best case, meaning the absolute deepest point) of our cost function, therefore minimizing cost, and minimizing how bad our network is.
 
-![description](images/graph-parabola-example-1.jpg)
+![description](images/graph-parabola-example-1.gif)
 
 Using basic calculus, lets calculate the derivative of our MSE cost function:
 
