@@ -3,6 +3,8 @@ Mini Pytorch style neural network library made entirely in C++ and CUDA.
 
 WARNING: This project is not completely finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
 
+Explanation of neural networks:
+
 Neural networks are simply just functions (meaning you give them an input and they give back an output). However, they are special, because you have to mold the function (network) itself to your liking through training.
 
 The function starts out as trash, and we gradually mold it so that it gives the correct output we want for each input we give it. It’s kind of a strange process. The reason we can’t just mathematically figure out the formula for the function that we want is that neural networks are very complex, with many calculations occurring across many layers. The correct function is far too complex to figure out manually. 
