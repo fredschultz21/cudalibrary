@@ -1,7 +1,7 @@
 # cudalibrary
 Mini Pytorch style neural network library made entirely in C++ and CUDA.
 
-WARMING: This project is not finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
+WARNING: This project is not completely finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
 
 Neural networks are simply just functions (meaning you give them an input and they give back an output). However, they are special, because you have to mold the function (network) itself to your liking through training.
 
@@ -47,6 +47,7 @@ Once we propagate on this layer, we get .51, which is then passed through the si
 
 Sigmoid function σ (so activations don’t move toward infinity):
 
+![description](images/sigmoid.jpg)
 
 Here is the matrix representation of this calculation. We add the bias after multiplying the weight and activation matrices.
 
@@ -55,7 +56,6 @@ Here is the matrix representation of this calculation. We add the bias after mul
 Here are the actual equations for the matrix multiplication and addition. These are very simple
 
 ![description](images/IMG_7882.jpg)
-
 
 Final network output:
 σ(.51) = .62
@@ -71,6 +71,8 @@ With our numbers: (.62 - 1.00)² = .14
 Squaring here is convenient because if there’s a big difference between the actual and desired values, meaning that the model is really bad, the MSE will be much higher. If there’s only a small difference between the actual and desired values, we will only gently nudge the model toward the right solution. Squaring also guarantees our output will be positive. We don’t actually care about the value of the cost function output, we only care about how it tells us to make the model better (so we only care about its derivative, I’ll explain in a second). 
 
 The goal of backpropagation is to find the minimum of the cost function. This is equivalent to saying we want to find the point where the graph dips lowest, and equivalent to saying that we want to find the point where the slope of the graph is flat, meaning we are either at a local or global minima. Training is similar to a ball rolling down a hill, trying to get the lowest it possibly can to minimize cost (minimize how bad the model is). If the cost function looks like this (although it will be at a much higher dimension than just 2 dimensions) and we are at x = 2, we want to step left and get to x = 0.5. We can simply take the slope where we are, at x = 2, see how steep it is, and the steeper the slope, the further we are from the deepest point, and the further we step down. Once we get down to x = 1, we will take tinier and tinier steps, until we find the local minima (or global minima in the best case, meaning the absolute deepest point) of our cost function, therefore minimizing cost, and minimizing how bad our network is.
+
+![description](images/graph-parabola-example-1.jpg)
 
 Using basic calculus, lets calculate the derivative of our MSE cost function:
 
