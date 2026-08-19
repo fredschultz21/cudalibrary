@@ -77,10 +77,10 @@ The goal of backpropagation is to find the minimum of the cost function. This is
 Using basic calculus, lets calculate the derivative of our MSE cost function:
 
 	Derivative of (actual value - desired value)²:
-2 x (actual value - desired value)
+	2 x (actual value - desired value)
 
-Same math as:
-Derivative of x² = 2x
+	Same math as:
+	Derivative of x² = 2x
 
 Easy! Now for the hard part. We can’t just back propagate layer by layer, with each layer in its own vacuum. The point of backpropagation is to correct the model
 
