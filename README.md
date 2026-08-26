@@ -1,7 +1,9 @@
 # cudalibrary
 Mini Pytorch style neural network library made entirely in C++ and CUDA.
 
-WARMING: This project is not finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
+WARNING: This project is not completely finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
+
+Explanation of neural networks:
 
 Neural networks are simply just functions (meaning you give them an input and they give back an output). However, they are special, because you have to mold the function (network) itself to your liking through training.
 
@@ -15,25 +17,25 @@ The actual strength of a network can be seen in more subtle problems. For exampl
 
 Here is a simple overview of the math for how we test a certain input in our neural network and see how wrong the output is. This is the neural network itself. This is a very small model, with an input layer of dimension 3, one hidden layer of dimension 2, and an output layer of dimension 1.
 
-![description](images/IMG_7873.jpg)
+<img src="images/IMG_7873.jpg" width="400">
 
 Here is a closer look at one part of the model. The model itself is really just its weights and biases. The activations are the output we see after testing an input by running it through the model. Activations may also be called nodes or neurons. We must compute these layer by layer until we compute the output layer, in a process called forward propagation. Note: I haven’t included the numbers of the weights and biases in the image above for the sake of simplicity, but they exist.
 
-![description](images/IMG_7871.jpg)
+<img src="images/IMG_7871.jpg" width="400">
 
 Lets say we only care about 2 inputs for this model. These must match up size wise with our model (input of size 3 and expected output of size 1). So we want our network to output 1.00 in the final activation node when our inputs are all 1.00, and output 0.00 when our inputs are all 0.00. In other cases, like if we set all inputs to .50, we will get some random output since we aren’t training our model in terms of the .50 input, and we don’t care.
 
-![description](images/IMG_7875.jpg)
+<img src="images/IMG_7875.jpg" width="400">
 
-![description](images/IMG_7878.jpg)
+<img src="images/IMG_7878.jpg" width="400">
 
 So, we plug in the 1.00 input in to see how bad our output is at this point, then we correct from there.
 
-![description](images/IMG_7876.jpg)
+<img src="images/IMG_7876.jpg" width="400">
 
 Let’s forward propagate one layer (I’ll show the math on how we do this in the next layer).
 
-![description](images/IMG_7877.jpg)
+<img src="images/IMG_7877.jpg" width="400">
 
 So we’ve calculated our activations for the middle layer! Now we just have to calculate the activation of the final node for the given input. Let's look closer at what the two weights and one bias are. We will use those for the calculation. So (seen below as well):
 	
@@ -43,19 +45,19 @@ So we’ve calculated our activations for the middle layer! Now we just have to 
 
 Once we propagate on this layer, we get .51, which is then passed through the sigmoid function (denoted by σ) in order to control the output, and keep it between 0 and 1.
 
-![description](images/IMG_7879.jpg)
+<img src="images/IMG_7879.jpg" width="400">
 
 Sigmoid function σ (so activations don’t move toward infinity):
 
+![description](images/sigmoid.png)
 
 Here is the matrix representation of this calculation. We add the bias after multiplying the weight and activation matrices.
 
-![description](images/IMG_7880.jpg)
+<img src="images/IMG_7880.jpg" width="400">
 
 Here are the actual equations for the matrix multiplication and addition. These are very simple
 
-![description](images/IMG_7882.jpg)
-
+<img src="images/IMG_7882.jpg" width="400">
 
 Final network output:
 σ(.51) = .62
@@ -72,15 +74,17 @@ Squaring here is convenient because if there’s a big difference between the ac
 
 The goal of backpropagation is to find the minimum of the cost function. This is equivalent to saying we want to find the point where the graph dips lowest, and equivalent to saying that we want to find the point where the slope of the graph is flat, meaning we are either at a local or global minima. Training is similar to a ball rolling down a hill, trying to get the lowest it possibly can to minimize cost (minimize how bad the model is). If the cost function looks like this (although it will be at a much higher dimension than just 2 dimensions) and we are at x = 2, we want to step left and get to x = 0.5. We can simply take the slope where we are, at x = 2, see how steep it is, and the steeper the slope, the further we are from the deepest point, and the further we step down. Once we get down to x = 1, we will take tinier and tinier steps, until we find the local minima (or global minima in the best case, meaning the absolute deepest point) of our cost function, therefore minimizing cost, and minimizing how bad our network is.
 
+![description](images/graph-parabola-example-1.gif)
+
 Using basic calculus, lets calculate the derivative of our MSE cost function:
 
 	Derivative of (actual value - desired value)²:
-2 x (actual value - desired value)
+	2 x (actual value - desired value)
 
-Same math as:
-Derivative of x² = 2x
+	Same math as:
+	Derivative of x² = 2x
 
-Easy! Now for the hard part. We can’t just back propagate layer by layer, with each layer in its own vacuum. The point of backpropagation is to correct the model
+Easy! Now for the hard part. We can’t just back propagate layer by layer, with each layer in its own vacuum. The point of backpropagation is to correct the model in terms of the inputs, so we can't just only look at each layer by itself. We need some way to calculate cost in terms of the earlier layers.
 
 The sigmoid function is nice since it keeps our activations between 0 and 1, but it has slightly “corrupted” our values at this point. In order to adjust stuff while backpropagating to translate back to what it was before sigmoid affected it, 
 
@@ -110,9 +114,9 @@ derivative of weight x previous activation -> this equation will always just be 
 
 Here is an even more simplified version of the equation:
 
-The derivative of sigmoid is always equal to a x (1 - a)
+	The derivative of sigmoid is always equal to a x (1 - a)
 
-(2 x (actual value - desired value)) x (actual value x (1 - actual value) x (previous activation)
+	(2 x (actual value - desired value)) x (actual value x (1 - actual value) x (previous activation)
 
 To calculate in terms of bias instead of weight just do:
 
