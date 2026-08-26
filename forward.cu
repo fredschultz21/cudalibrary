@@ -18,23 +18,9 @@ __global__ void forward(float* input, float* weights, float* bias, float* out, c
         case 's':
             *(out + row) = sigmoid(sum);
             break;
-        case 'r':
-            *(out + row) = relu(sum);
-            break;
-        case 't':
-            *(out + row) = tanhAct(sum);
-            break;
     }
 }
 
 __device__ float sigmoid(float x) {
     return 1.0f / (1.0f + expf(-x));
-}
-
-__device__ float relu(float x) {
-    return x > 0.0f ? x : 0.0f;
-}
-
-__device__ float tanhAct(float x) {
-    return tanhf(x);
 }

@@ -17,7 +17,7 @@ class network {
             }
          }
 
-        std::vector<tensor> network::getVector();
+        std::vector<tensor> getVector();
 
         void addTrainingSample(tensor input, tensor expectedOutput);
 
