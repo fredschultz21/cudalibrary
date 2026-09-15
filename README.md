@@ -1,7 +1,7 @@
 # cudalibrary
 Mini Pytorch style neural network library made entirely in C++ and CUDA.
 
-WARNING: This project is not completely finished, (I am sorry) but it should be done by 8/23/2026, 4 days from when I'm writing this.
+WARNING: This project is not completely finished. I have become very busy working at my internship part time, doing graphics research, and learning two languages this semester, but I hope to finish this soon.
 
 Explanation of neural networks:
 
